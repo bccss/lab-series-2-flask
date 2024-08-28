@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boston College Community Service Events</title> <!--added "Boston College"-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/contact.css') }}">
+    <script src="https://kit.fontawesome.com/30870c0125.js" crossorigin="anonymous"></script> <!--icon input for social apps from FontAwesome website-->
+</head>
+<body>
+    <header>
+        <nav>
+            <ul class="nav-list">
+                <li class="nav-item"><a href="/about">About</a></li> <!--deleted "Home"-->
+                <li class="nav-item"><a href="/">Events</a></li>
+                <li class="nav-item"><a href="/contact">Contact</a></li>
+            </ul>
+        </nav>
+        <h1>Boston College Community Service Events</h1> <!--added "Boston College"-->
+    </header>
+    <div class="container">
+        <div class="form-container">
+            <h2>Contact Us</h2>
+            <div class="contact-top">
+                <p><i class="fa-solid fa-paper-plane"></i>sample@example.com</p>
+                <p><i class="fa-solid fa-phone"></i>012-345-6789</p>
+                <div class="social-icons">
+                    <!--we could link these to BCCSS social app pages to show functionality or we could just leave them as they are-->
+                    <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                </div>
+            </div>
+            <div class="contact-bottom">
+                <form>
+                    <!--potential linking with google sheets or formspree-like service-->
+                    <input type="text" name="Name" placeholder="Your Name" required>
+                    <input type="email" name="email" placeholder="Your Email" required>
+                    <textarea name="Message" rows="6" placeholder="Your Message"></textarea>
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2024 Boston College Community Service Events. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

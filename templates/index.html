@@ -10,28 +10,27 @@
     <header>
         <nav>
             <ul class="nav-list">
-                <li class="nav-item"><a href="#home">Home</a></li>
-                <li class="nav-item"><a href="#about">About</a></li>
-                <li class="nav-item"><a href="#events">Events</a></li>
-                <li class="nav-item"><a href="#contact">Contact</a></li>
+                <li class="nav-item"><a href="about">About</a></li>
+                <li class="nav-item"><a href="/">Events</a></li>
+                <li class="nav-item"><a href="contact">Contact</a></li>
             </ul>
         </nav>
-        <h1>Community Service Events</h1>
+        <h1>Boston College Community Service Events</h1>
     </header>
     <div class="container">
         <div class="form-container">
             <h2>Submit a New Event</h2>
             <form action="{{ url_for('add_event') }}" method="post" id="event-form">
-                <label for="event-name">Event Name:</label>
+                <label for="name">Event Name:</label>
                 <input type="text" id="name" name="name" required>
 
-                <label for="event-date">Date:</label>
+                <label for="date">Date:</label>
                 <input type="date" id="date" name="date" required>
 
-                <label for="event-description">Description:</label>
+                <label for="description">Description:</label>
                 <textarea id="description" name="description" required></textarea>
 
-                <label for="event-location">Location:</label>
+                <label for="location">Location:</label>
                 <input type="text" id="location" name="location" required>
 
                 <button type="submit">Submit</button>

@@ -21,6 +21,14 @@ def index():
     events = Event.query.all()
     return render_template('index.html', events=events)
 
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
+@app.route('/contact')
+def contact():
+    return render_template('contact.html')
+
 @app.route('/add', methods=['POST'])
 def add_event():
     name = request.form.get('name')
