@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Event</title>
+</head>
+<body>
+    <h1>Edit Event</h1>
+    <form action="{{ url_for('edit_event', id=event.id) }}" method="POST">
+        <input type="text" name="name" value="{{ event.name }}" required>
+        <input type="text" name="date" value="{{ event.date }}" required>
+        <input type="text" name="description" value="{{ event.description }}" required>
+        <input type="text" name="location" value="{{ event.location }}" required>
+        <button type="submit">Update Event</button>
+    </form>
+</body>
+</html>
