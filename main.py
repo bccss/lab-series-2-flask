@@ -1,10 +1,11 @@
+# To start coding env: $source env/bin/activate
 from flask import Flask, request, redirect, url_for, render_template # Necessary Imports from the flask library
-from flask_sqlalchemy import SQLAlchemy # Imports the flask SQL tookit for simple database access
+from flask_sqlalchemy import SQLAlchemy # Imports the flask SQL tool kit for simple database access
 
-app = Flask(__name__) #
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///events.db'
+app = Flask(__name__) # Creates an instance of the flask app
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///events.db' #Database config
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db = SQLAlchemy(app)
+db = SQLAlchemy(app) # Creates an instance of the SQLAlchemy Class, allowing us to use its functions
 
 # Class that uses functions from sqlalchemy to set all attributes for an event
 class Event(db.Model):
@@ -17,9 +18,13 @@ class Event(db.Model):
     def __repr__(self):
         return f'<Event {self.name}>'
 
-@app.route('/') # Route for the index page of the app
+    # Other methods which are called below are built into the class!
+
+
+# Functions used to render pages
+@app.route('/', methods=['GET']) # Route for the index page of the app
 def index():
-    events = Event.query.all() # Queries all events stored in our database
+    events = Event.query.all() # Queries all events stored in our database (sqlalchemy)
     return render_template('index.html', events=events) # Returns the index.html template with queried events
 
 @app.route('/about')
@@ -30,6 +35,8 @@ def about():
 def contact():
     return render_template('contact.html')
 
+
+# CRUD Functions:
 @app.route('/add', methods=['POST']) # Route for handling POST requests to add a new event
 def add_event():
     name = request.form.get('name') # Retrieves the event name from the form
@@ -40,6 +47,7 @@ def add_event():
     db.session.add(new_event) # Adds the new event to the database session
     db.session.commit() # Commits the changes to the database
     return redirect(url_for('index')) # Redirects to the index page after adding the event
+    # return ""
 
 @app.route('/edit/<int:id>', methods=['GET', 'POST']) # Route for handling GET and POST requests to edit an existing event
 def edit_event(id):
@@ -53,13 +61,13 @@ def edit_event(id):
         return redirect(url_for('index')) # Redirects to the index page after updating the event
     return render_template('edit.html', event=event) # Renders the edit.html template with the event details
 
-
 @app.route('/delete/<int:id>') # Route for handling the deletion of an event
 def delete_event(id):
     event = Event.query.get_or_404(id) # Retrieves the event by ID or returns a 404 error if not found
     db.session.delete(event) # Deletes the event from the database session
     db.session.commit() # Commits the changes to the database
     return redirect(url_for('index')) # Redirects to the index page after deleting the event
+
 
 if __name__ == '__main__':
     with app.app_context(): # Creates an application context for running database commands
